@@ -1,25 +1,32 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Solution {
-    public static void main(String[] args) {
-        printAnagram("test", "test");
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(
+                new InputStreamReader(System.in));
+
+        String a = bufferedReader.readLine();
+        String b = bufferedReader.readLine();
+
+        bufferedReader.close();
+
+        boolean ret = isAnagram(a, b);
+        System.out.println((ret) ? "Anagrams" : "Not Anagrams");
     }
 
-    public static void printAnagram(String first, String second) {
-        char[] firstWords = first.toLowerCase().toCharArray();
-        char[] secondWords = second.toLowerCase().toCharArray();
+    public static boolean isAnagram(String a, String b) {
+        char[] first = a.toLowerCase().toCharArray();
+        char[] second = b.toLowerCase().toCharArray();
 
-        Arrays.sort(firstWords);
-        Arrays.sort(secondWords);
+        Arrays.sort(first);
+        Arrays.sort(second);
 
-        String firstResult = new String(firstWords);
-        String secondResult = new String(secondWords);
+        String firstResult = new String(first);
+        String secondResult = new String(second);
 
-        if (firstResult.equals(secondResult)) {
-            System.out.println("Anagrams");
-        }
-        else {
-            System.out.println("Not Anagrams");
-        }
+        return firstResult.equals(secondResult);
     }
 }
