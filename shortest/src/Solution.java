@@ -31,10 +31,27 @@ public class Solution {
                 StringBuilder word = new StringBuilder();
 
                 // 그 다음위치 ~ 끝까지 문자열 비교하는 코드 작성
+                for (int k = i + length; k < s.length(); k = k + length) {
+                    String substring = "";
 
+                    if (s.length() <= k + length) {
+                        substring = s.substring(k, s.length());
+                    }
+                    else {
+                        substring = s.substring(k, k + length);
+                    }
+
+                    if (result.equals(substring)) {
+                        count += 1;
+                        i = k;
+                    }
+
+                    else {
+                        break;
+                    }
+                }
 
                 // 중복되지 않은 문자열들만 골라서 새 문자열 만들기.
-
                 if (count == 1) {
                     word.append(result);
                 }
