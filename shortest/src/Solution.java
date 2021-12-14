@@ -8,10 +8,12 @@
 // 가장 짧은 길이는? 문자열 길이.max
 
 
+import java.io.StringWriter;
 
 public class Solution {
     public static int solution(String s) {
         int answer = s.length();
+        int count = 1;
 
         for (int length = 1; length <= s.length()/2; length++) {
             StringBuilder stringBuilder = new StringBuilder();
@@ -25,7 +27,28 @@ public class Solution {
                 else {
                     result = s.substring(i, i + length);
                 }
+
+                StringBuilder word = new StringBuilder();
+
+                // 그 다음위치 ~ 끝까지 문자열 비교하는 코드 작성
+
+
+                // 중복되지 않은 문자열들만 골라서 새 문자열 만들기.
+
+                if (count == 1) {
+                    word.append(result);
+                }
+                else {
+                    word.append(count).append(result);
+                }
+
+                stringBuilder.append(word.toString());
             }
+
+            // 구해야 하는 결과는
+            answer = Math.min(answer, stringBuilder.toString().length());
         }
+
+        return answer;
     }
 }
